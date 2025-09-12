@@ -13,7 +13,7 @@ if(a>b){
     printf("o valor a e maior que o valor b");
 }else if (a==b)
 {
-    printf("os valores sao iguai");
+    printf("os valores sao iguais");
 }else
 {
     printf("o valor b e maior que o valor a");

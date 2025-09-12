@@ -3,7 +3,7 @@
 int main(){
     float numero;
     float soma = 0;
-    float total = 0;
+    int total = 0;
    
    do{
     printf("\nEntre com um numero: ");
@@ -17,10 +17,10 @@ int main(){
    if(total == 0){
     printf("nao foi inserido nenhum numero");
    }else{
-    if(total == 1){
-        printf("\nFoi inserido %.0f numero",total);
-    }
+    printf("foi inserido %d numeros \n",total);     
    }
+
+   printf("media: %.1f",soma/total);
         
 
     return 0;
