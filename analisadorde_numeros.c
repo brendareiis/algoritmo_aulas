@@ -46,6 +46,7 @@ int main(){
         break;
     }else{
         printf("\nnao tem");
+        break;
     }
 
      }
