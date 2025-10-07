@@ -1,17 +1,18 @@
 #include <stdio.h>
 
 int main(){
-    char pri_nome[5];
-    char segu_nome[5];
+    char str1[50];
+    char str2[50];
+    char cat[100];
 
-    printf("digite o primeiro nome: \n");
-    scanf("%s",&pri_nome);
+    strcpy(str1,"texto da string1"); // insere o texto em str
+    strcpy(str2," | nova parte do texto");
 
-    printf("digite o segundo nome: \n");
-    scanf("%s",&segu_nome);
+    //bzero(cat, 100); // limpa a variavel cat
 
-    printf("primeiro nome foi %s",pri_nome);
-    printf("primeiro nome foi %s",segu_nome);
+    strcat(cat, str1); 
+    strcat(cat, str2);
 
+    puts(str1);
     return 0;
 }
