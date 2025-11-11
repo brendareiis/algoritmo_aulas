@@ -1,25 +1,68 @@
 #include <stdio.h>
+#define N_PESSOAS 5
 
-typedef struct
-{
+struct Pessoa {
     char nome[100];
-    int ano_nasci;
+    int ano_nascimento;
     char sexo;
-    double altura;
-    double peso;
-    float cpf;
-}Pessoa;
+    float altura;
+    float peso;
+    double cpf;
+};
 
-int main(){
+int main() {
+    struct Pessoa pessoas[N_PESSOAS];
 
-    Pessoa p1 = {"Brenda Reis Prado", 2006, 'F', 1.60, 46.0, 06668944183.0};
 
-    printf("Nome %s\n",p1.nome);
-    printf("Ano de nascimento %d\n",p1.ano_nasci);
-    printf("Sexo %c\n",p1.sexo);
-    printf("Altura %f\n",p1.altura);
-    printf("Peso %f\n",p1.peso);
-    printf("CPF %f\n",p1.cpf);
+    for (int i = 0; i < N_PESSOAS; i++) {
+        printf("\n=== Cadastro da pessoa %d ===\n", i + 1);
+
+        printf("Nome: ");
+        fflush(stdin);
+        fgets(pessoas[i].nome, 100, stdin);
+
+        printf("Ano de nascimento: ");
+        scanf("%d", &pessoas[i].ano_nascimento);
+
+        printf("Sexo (M/F): ");
+        fflush(stdin);
+        scanf(" %c", &pessoas[i].sexo); // espaço antes do %c evita capturar '\n'
+
+        printf("Altura (em metros): ");
+        scanf("%f", &pessoas[i].altura);
+
+        printf("Peso (em kg): ");
+        scanf("%f", &pessoas[i].peso);
+
+        printf("CPF: ");
+        scanf("%lf", &pessoas[i].cpf);
+    }
+
+    printf("\n--- Dados cadastrados ---\n");
+    for (int i = 0; i < N_PESSOAS; i++) {
+        printf("\nPessoa %d:\n", i + 1);
+        printf("Nome: %s", pessoas[i].nome);
+        printf("Ano de nascimento: %d\n", pessoas[i].ano_nascimento);
+        printf("Sexo: %c\n", pessoas[i].sexo);
+        printf("Altura: %.2f m\n", pessoas[i].altura);
+        printf("Peso: %.2f kg\n", pessoas[i].peso);
+        printf("CPF: %.0lf\n", pessoas[i].cpf);
+    }
+
+    // Salvar dados em arquivo binário
+    FILE *f = fopen("pessoas.dat", "wb"); // Abrir arquivo binário para escrita
+    if (f == NULL) {
+        printf("Erro ao abrir arquivo!\n");
+        return 1;
+    }
+
+    for (int i = 0; i < N_PESSOAS; i++) {
+        fwrite(&pessoas[i], sizeof(struct Pessoa), 1, f); // Escrever estrutura no arquivo binário
+    }
+
+    fclose(f); // Fechar o arquivo
+
+    printf("Dados salvos com sucesso!\n");
 
     return 0;
 }
